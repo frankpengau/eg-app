@@ -1,9 +1,9 @@
-import * as cdk from 'aws-cdk-lib';
+import { core } from '@frankpengau/eg-lib';
 import { Construct } from 'constructs';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
-export class EgAppStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+export class EgAppStack extends core.Stack {
+  constructor(scope: Construct, id: string, props?: core.StackProps) {
     super(scope, id, props);
 
     // The code that defines your stack goes here

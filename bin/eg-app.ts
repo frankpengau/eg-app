@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import * as cdk from 'aws-cdk-lib';
+import { core } from '@frankpengau/eg-lib';
 import { EgAppStack } from '../lib/eg-app-stack';
 
-const app = new cdk.App();
+const app = new core.App();
 new EgAppStack(app, 'EgAppStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
