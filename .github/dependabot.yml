@@ -1,0 +1,29 @@
+version: 2
+registries:
+  npm-github:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{ secrets.GITHUB_TOKEN }}
+    scope: "@frankpengau"
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    registries: "*"
+    schedule:
+      interval: "monthly"
+    cooldown:
+      default-days: 7
+    groups:
+      monthly-batch:
+        patterns:
+          - "*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    cooldown:
+      default-days: 7
+    groups:
+      monthly-batch:
+        patterns:
+          - "*"
