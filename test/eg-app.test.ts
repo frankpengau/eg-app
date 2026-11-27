@@ -1,17 +1,29 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as EgApp from '../lib/eg-app-stack';
+import { core } from '@frankpengau/eg-lib';
+import { EgAppStack } from '../lib/eg-app-stack';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/eg-app-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new EgApp.EgAppStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+describe('EgApp Stack - Stack Synth', () => {
+    test('Stack Synth - Lambda', () => {
+        const testApp = new core.App();
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+        const testStack = new EgAppStack(testApp, 'TestStack');
+
+        const template = core.assertions.Template.fromStack(testStack);
+
+        template.hasResourceProperties('AWS::Lambda::Function', {
+            Handler: 'index.handler',
+            Runtime: 'nodejs24.x'
+        });
+    })
+});
+
+describe('EgApp Stack - Stack Snapshot', () => {
+    test('Stack Snapshot', () => {
+        const testApp = new core.App();
+
+        const testStack = new EgAppStack(testApp, 'TestStack');
+
+        const template = core.assertions.Template.fromStack(testStack);
+
+        expect(template.toJSON()).toMatchSnapshot();
+    });
 });
