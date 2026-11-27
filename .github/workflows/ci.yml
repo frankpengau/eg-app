@@ -36,7 +36,7 @@ jobs:
       - run: npm run build
 
   release_slice:
-    if: "github.ref != 'refs/heads/master' && contains(toJSON(github.event.commits.*.message), '[release]')"
+    if: "github.ref != 'refs/heads/main' && contains(toJSON(github.event.commits.*.message), '[release]')"
 
     runs-on: ubuntu-latest
 
